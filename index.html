@@ -1,0 +1,83 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Message from APUBCC</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #message {
+            font-size: 20px;
+            text-align: center;
+            white-space: pre-line;
+            overflow: hidden;
+            border-right: 2px solid white;
+        }
+
+        a {
+            color: #00f2ff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #message {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="message"></div>
+
+    <script>
+        const messageElement = document.getElementById('message');
+        const messageText = `We ask you not to scan the QR code but yet you still did...
+        
+        Do you know that there's a party happening on the 1st of March?`;
+
+        const secondMessageText = '<a href="https://forms.gle/rAZMrvyovA7bibYM9">Press this link here to find out.... (source: trust me bro)</a>';
+        let i = 0;
+
+        function typeMessage() {
+            const typingInterval = setInterval(() => {
+                messageElement.innerHTML += messageText[i];
+                i++;
+
+                if (i === messageText.length) {
+                    clearInterval(typingInterval);
+                    appendSecondMessage();
+                }
+            }, 30);
+        }
+
+        function appendSecondMessage() {
+            const secondMessageElement = document.createElement('p');
+            secondMessageElement.innerHTML = secondMessageText;
+            messageElement.appendChild(secondMessageElement);
+            showTextAfterDelay();
+        }
+
+        function showTextAfterDelay() {
+            setTimeout(function () {
+                var secondMessageElement = document.getElementById('message2');
+
+                secondMessageElement.style.display = 'block';
+            }, 4000);
+        }
+
+        window.onload = typeMessage;
+    </script>
+</body>
